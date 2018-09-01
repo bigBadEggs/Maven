@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+
+    <link href="css/myCss.css" type="text/css" rel="stylesheet"/>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/messages_cn.js"></script>
+    <script src="js/myJs.js"></script>
+    <script>
+       $(function () {
+           // 0. 表单验证
+           $("#msgForm").validate({
+               onsubmit:true,// 是否在提交是验证
+               onfocusout:false,// 是否在获取焦点时验证
+               onkeyup :false,// 是否在敲击键盘时验证
+
+               rules:{
+                   userName: {
+                       required: true
+                   }
+               },
+               submitHandler: function() {  //通过之后回调
+                   //进行ajax传值
+                   // 2. 监听提交按钮点击
+                   // 拿到用户输入内容
+                   var $text = $(".comment").val();
+                   var $name = $("input[name='userName']").val();
+                   // 提交远程服务器
+                   $.ajax({
+                       url: "http://localhost:8080/addMsg",
+                       type: "post",
+                       data: {
+                           "username": $name,
+                           "message": $text
+                       },
+                       dataType: "text",
+                       success: function (msg) {
+                           if(msg == "1"){
+                               alert("success");
+                               // 清空输入框
+                               $(".comment").val("");
+                           }
+                       },
+                       error: function (xml) {
+                           console.log(xml);
+                       }
+                   })
+               },
+               invalidHandler: function(form, validator) {return false;}
+           });
+       })
+    </script>
+</head>
+<body>
+<div class="User">
+    <form action="" method="post" id="msgForm">
+        用户：<input type="text" name="userName"><br><br>
+        留言：<textarea cols="40" rows="5" name="text" class="comment"></textarea>
+        <input type="submit" value="提交" disabled>
+        <input type="reset" value="清除" disabled/>
+    </form>
+</div>
+<div class="page">
+    <input class="btn1" type="button" value="上一页" onClick="">
+    <input class="btn2" type="button" value="下一页" onClick="">
+</div><br>
+<div class="messageShow">
+
+</div>
+</body>
+</html>

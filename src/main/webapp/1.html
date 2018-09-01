@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编码格式</title>
+    <script src="js/jquery-3.3.1.js">
+        $(function () {
+            $.ajax({
+                url: "http://localhost:8080/addMsg",
+                type: "post",
+                data: {
+                    "key":"你好"
+                },
+                success: function (result) {
+                    alert("fdf");
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<form action="http://localhost:8080/showUser" method="post">
+    <input name="key">
+    <input type="submit">
+</form>
+</body>
+</html>

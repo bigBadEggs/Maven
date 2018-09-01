@@ -1,0 +1,36 @@
+.User textarea{
+    resize: none;
+}
+.messageShow{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+}
+.info{
+    border: 1px solid cornflowerblue;
+}
+.user{
+    line-height: 20px;
+    border-bottom: 1px solid cornflowerblue;
+    overflow: hidden;
+    margin-top: 0px;
+    background-color: cornflowerblue;
+}
+.user>.userId{
+    float: right;
+    margin-right: 5px;
+}
+.infoText{
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+.infoOpen{
+    height: 20px;
+    border-top: 1px solid cornflowerblue;
+}
+.infoOpen>span{
+    float: right;
+    font-size: 14px;
+    color: #cccccc;
+    margin-right: 5px;
+}
