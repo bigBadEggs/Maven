@@ -27,6 +27,7 @@ public class RegisterServlet extends HttpServlet {
             // dao操作哦
             // 查询是否已注册
             List<User> list = new RegisterDaoImpl().select(u);
+            System.out.println(list);
             PrintWriter pw = response.getWriter();
             if(list.size() > 0){
                 pw.print(0);
